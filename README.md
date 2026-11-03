@@ -1,4 +1,4 @@
-# SORTED Connect
+# Conneck
 
 A private business development workspace for the founder of [SORTED](https://sorted.works), a UK warehouse management and inventory platform. It brings together finding potential customers, referral sources, strategic partners, co-founder candidates and funding programmes across the UK. It then helps research, score, organise and contact them.
 

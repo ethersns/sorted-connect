@@ -62,7 +62,7 @@ function OutreachStudio() {
 
       <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
         <aside className="flex flex-col gap-4">
-          <section className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5">
+          <section className="flex flex-col gap-4 rounded-2xl border-2 border-border bg-card p-5">
             <div className="flex flex-col gap-1.5">
               <Label className="text-xs text-muted-foreground">Recipient</Label>
               <Select value={targetId} onValueChange={(v) => { setTargetId(v); setDraft(''); const o = opportunities.find((x) => x.id === v); if (o) setType(DEFAULT_TYPE[o.kind]) }}>
@@ -95,7 +95,7 @@ function OutreachStudio() {
           </section>
 
           {target && (
-            <section className="rounded-xl border border-border bg-card p-5">
+            <section className="rounded-2xl border-2 border-border bg-card p-5">
               <div className="mb-3 flex items-center justify-between">
                 <Link to="/opportunities/$id" params={{ id: target.id }} className="text-sm font-semibold hover:text-primary">{target.name}</Link>
                 <KindBadge kind={target.kind} />
@@ -120,7 +120,7 @@ function OutreachStudio() {
           {!draft ? (
             <EmptyState icon={PenLine} title="No draft yet">Choose a recipient, message type and tone, then generate.</EmptyState>
           ) : (
-            <div className="rounded-xl border border-border bg-card">
+            <div className="rounded-2xl border-2 border-border bg-card">
               <div className="flex items-center justify-between border-b border-border px-4 py-2.5 text-xs text-muted-foreground">
                 <span>{type} · {tone}</span>
                 <span>{draft.length} characters</span>

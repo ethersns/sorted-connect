@@ -40,7 +40,7 @@ function Advisor() {
       <PageHeader title="Growth Advisor" description="Practical, near-term business development advice grounded in your actual pipeline — not generic startup tips." />
 
       <div className="grid gap-4 md:grid-cols-2">
-        <section className="rounded-xl border border-border bg-card p-5">
+        <section className="rounded-2xl border-2 border-border bg-card p-5">
           <h2 className="text-sm font-semibold">Bottleneck right now</h2>
           <p className="mt-2 text-sm text-foreground/85">
             {biggestDrop.from
@@ -49,7 +49,7 @@ function Advisor() {
           </p>
           <p className="mt-1 text-xs text-muted-foreground">Calculated from saved records.</p>
         </section>
-        <section className="rounded-xl border border-border bg-card p-5">
+        <section className="rounded-2xl border-2 border-border bg-card p-5">
           <h2 className="text-sm font-semibold">Average fit by region</h2>
           <ul className="mt-3 flex flex-col gap-2 text-sm">
             {byRegion.map((r) => (
@@ -65,7 +65,7 @@ function Advisor() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {FUNCTIONS.map((fn) => (
-          <section key={fn.title} className="flex flex-col rounded-xl border border-border bg-card p-5">
+          <section key={fn.title} className="flex flex-col rounded-2xl border-2 border-border bg-card p-5">
             <fn.icon className="size-5 text-primary" />
             <h2 className="mt-3 font-semibold">{fn.title}</h2>
             <p className="mt-1 flex-1 text-sm text-muted-foreground">{fn.body}</p>

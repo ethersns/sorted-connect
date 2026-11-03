@@ -35,7 +35,7 @@ function Tasks() {
       <PageHeader title="Tasks & Follow-ups" description={`${done} of ${tasks.length} completed. Revenue-producing follow-ups are flagged high priority.`} />
 
       <form
-        className="flex flex-wrap gap-2 rounded-xl border border-border bg-card p-4"
+        className="flex flex-wrap gap-2 rounded-2xl border-2 border-border bg-card p-4"
         onSubmit={(e) => {
           e.preventDefault()
           if (!title.trim()) return
@@ -70,7 +70,7 @@ function Tasks() {
             <h2 className={cn('mb-2 text-xs font-medium uppercase tracking-wider', g.label === 'Overdue' ? 'text-destructive' : 'text-muted-foreground')}>
               {g.label} · {g.items.length}
             </h2>
-            <ul className="divide-y divide-border rounded-xl border border-border bg-card">
+            <ul className="divide-y divide-border rounded-2xl border-2 border-border bg-card">
               {g.items.map((t) => {
                 const o = opportunities.find((x) => x.id === t.opportunityId)
                 return (

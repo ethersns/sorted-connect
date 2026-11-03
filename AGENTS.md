@@ -4,7 +4,7 @@ This document describes the project for developers and AI agents working on this
 
 ## Project Overview
 
-**SORTED Connect** is a private, single-founder business development tool for SORTED (UK warehouse/inventory SaaS). It covers five pipelines: customers, referral sources, strategic partners, co-founder candidates, and funding & growth.
+**Conneck** (formerly SORTED Connect) is a private, single-founder business development tool for SORTED (UK warehouse/inventory SaaS). It covers five pipelines: customers, referral sources, strategic partners, co-founder candidates, and funding & growth.
 
 **Start here:** read `PLAN.md`. Milestone 1 (the full product surface on sample data) is done. Continue from Milestone 2 (invite-only Netlify Identity + Netlify Database).
 
@@ -58,7 +58,7 @@ src/
 ```
 
 ### Non-obvious decisions
-- The app is dark-only: `<html className="dark">`, and `:root` and `.dark` share one navy/charcoal palette in `src/styles.css`. The accent is electric blue (`--primary`), with `--success` and `--warning` tokens added.
+- The app is dark-only: `<html className="dark">`, and `:root` and `.dark` share one "swamp at dusk" palette in `src/styles.css`. The accent is frog green (`--primary`), with `--success`, `--warning`, `--ink` (sticker outlines/shadows) and `--frog-*` mascot tokens. The mascot is an original inline-SVG frog in `src/components/frog.tsx` (moods: smug, sad, happy, shook). Bordered `bg-card` elements get an offset sticker shadow globally.
 - `PREVIEW_TODAY` in `fixtures.ts` pins "today" for the sample workspace so due dates stay meaningful. Switch to the real date once data is live.
 - Components only touch data through `useWorkspace()`. Keep that API stable when moving to the database.
 
