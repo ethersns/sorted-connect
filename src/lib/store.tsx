@@ -32,7 +32,9 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const value = React.useMemo<Workspace>(() => {
     const updateOpportunity = (id: string, patch: Partial<Opportunity>) =>
       setOpportunities((prev) =>
-        prev.map((o) => (o.id === id ? { ...o, ...patch, lastTouchedAt: today() } : o)),
+        prev.map((o) =>
+          o.id === id ? { ...o, ...patch, lastTouchedAt: today() } : o,
+        ),
       )
 
     const addActivity: Workspace['addActivity'] = (id, activity) =>
@@ -42,7 +44,10 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
             ? {
                 ...o,
                 lastTouchedAt: today(),
-                activities: [...o.activities, { ...activity, id: uid(), at: nowIso() }],
+                activities: [
+                  ...o.activities,
+                  { ...activity, id: uid(), at: nowIso() },
+                ],
               }
             : o,
         ),
@@ -64,7 +69,12 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
                   lastTouchedAt: today(),
                   activities: [
                     ...o.activities,
-                    { id: uid(), type: 'stage', title: `Moved to ${stage}`, at: nowIso() },
+                    {
+                      id: uid(),
+                      type: 'stage',
+                      title: `Moved to ${stage}`,
+                      at: nowIso(),
+                    },
                   ],
                 }
               : o,
@@ -97,9 +107,21 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
           tags: [],
           assessment: null,
           activities: [
-            { id: uid(), type: 'research', title: `Saved from Lead Finder (${r.source})`, at: nowIso() },
+            {
+              id: uid(),
+              type: 'research',
+              title: `Saved from Lead Finder (${r.source})`,
+              at: nowIso(),
+            },
           ],
-          sources: [{ title: r.name, url: r.url, kind: r.source, retrievedAt: r.retrievedAt }],
+          sources: [
+            {
+              title: r.name,
+              url: r.url,
+              kind: r.source,
+              retrievedAt: r.retrievedAt,
+            },
+          ],
           notes: '',
           estimatedValue: null,
           doNotContact: false,
@@ -111,16 +133,24 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         return created.length
       },
       toggleTask: (id) =>
-        setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))),
-      addTask: (task) => setTasks((prev) => [{ ...task, id: uid(), done: false }, ...prev]),
+        setTasks((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
+        ),
+      addTask: (task) =>
+        setTasks((prev) => [{ ...task, id: uid(), done: false }, ...prev]),
     }
   }, [opportunities, tasks])
 
-  return <WorkspaceContext.Provider value={value}>{children}</WorkspaceContext.Provider>
+  return (
+    <WorkspaceContext.Provider value={value}>
+      {children}
+    </WorkspaceContext.Provider>
+  )
 }
 
 export function useWorkspace() {
   const ctx = React.useContext(WorkspaceContext)
-  if (!ctx) throw new Error('useWorkspace must be used inside WorkspaceProvider')
+  if (!ctx)
+    throw new Error('useWorkspace must be used inside WorkspaceProvider')
   return ctx
 }

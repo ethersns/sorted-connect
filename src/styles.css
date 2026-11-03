@@ -1,6 +1,6 @@
-@import "tailwindcss" source("../");
+@import 'tailwindcss' source('../');
 
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -30,9 +30,9 @@ code {
 
 :root,
 .dark {
-  --font-body: "Nunito", ui-rounded, ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Lilita One", "Nunito", ui-rounded, sans-serif;
-  --font-mono-ui: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-body: 'Nunito', ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Lilita One', 'Nunito', ui-rounded, sans-serif;
+  --font-mono-ui: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   --content-width: 80rem;
   --reading-width: 42rem;
   /* Swamp at dusk */
@@ -144,7 +144,7 @@ code {
 @layer base {
   /* Every bordered card gets a chunky sticker shadow. Shadow utilities still override. */
   .bg-card.border,
-  [data-slot="card"] {
+  [data-slot='card'] {
     box-shadow: 4px 4px 0 0 var(--ink);
   }
   h1,
@@ -163,7 +163,7 @@ code {
   isolation: isolate;
 }
 .pond::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -187,7 +187,7 @@ code {
       0 0 / 22px 22px;
 }
 .pond::after {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: 60;

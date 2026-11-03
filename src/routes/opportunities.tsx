@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/button'
 import { PageHeader } from '@/components/bits'
 import { OpportunityTable } from '@/components/opportunity-table'
 
-export const Route = createFileRoute('/opportunities')({ component: AllOpportunities })
+export const Route = createFileRoute('/opportunities')({
+  component: AllOpportunities,
+})
 
 function AllOpportunities() {
   return (
@@ -15,10 +17,21 @@ function AllOpportunities() {
         description="Every organisation and person you’ve saved, across customers, referrers, partners, co-founders and funding."
         actions={
           <>
-            <Button variant="outline" onClick={() => toast.info('CSV import arrives with persistent storage', { description: 'Export already works today.' })}>
+            <Button
+              variant="outline"
+              onClick={() =>
+                toast.info('CSV import arrives with persistent storage', {
+                  description: 'Export already works today.',
+                })
+              }
+            >
               <Upload /> Import CSV
             </Button>
-            <Button asChild><Link to="/lead-finder"><Compass /> Find more</Link></Button>
+            <Button asChild>
+              <Link to="/lead-finder">
+                <Compass /> Find more
+              </Link>
+            </Button>
           </>
         }
       />

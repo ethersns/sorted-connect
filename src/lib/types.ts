@@ -1,9 +1,5 @@
 export type PipelineKind =
-  | 'customer'
-  | 'referral'
-  | 'partner'
-  | 'cofounder'
-  | 'funding'
+  'customer' | 'referral' | 'partner' | 'cofounder' | 'funding'
 
 export type Confidence = 'High' | 'Medium' | 'Low'
 
