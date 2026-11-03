@@ -5,6 +5,7 @@ import {
   Compass,
   Handshake,
   KanbanSquare,
+  Landmark,
   LayoutDashboard,
   ListChecks,
   Menu,
@@ -30,18 +31,19 @@ import { KindBadge } from './bits'
 import { FROG_QUIPS, Frog, SpeechBubble } from './frog'
 
 export const NAV = [
-  { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/lead-finder', label: 'Lead Finder', icon: Compass },
-  { to: '/opportunities', label: 'All Opportunities', icon: Table2 },
-  { to: '/pipeline', label: 'Sales Pipeline', icon: KanbanSquare },
-  { to: '/outreach', label: 'Outreach Studio', icon: PenLine },
-  { to: '/cofounders', label: 'Co-Founder Search', icon: UserRoundSearch },
-  { to: '/partnerships', label: 'Partnerships & Network', icon: Handshake },
-  { to: '/funding', label: 'Funding & Growth', icon: Rocket },
-  { to: '/advisor', label: 'Growth Advisor', icon: BarChart3 },
-  { to: '/tasks', label: 'Tasks & Follow-ups', icon: ListChecks },
-  { to: '/settings', label: 'Settings', icon: Settings },
-] as const
+  { to: "/", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/lead-finder", label: "Lead Finder", icon: Compass },
+  { to: "/company-register", label: "UK Company Register", icon: Landmark },
+  { to: "/opportunities", label: "All Opportunities", icon: Table2 },
+  { to: "/pipeline", label: "Sales Pipeline", icon: KanbanSquare },
+  { to: "/outreach", label: "Outreach Studio", icon: PenLine },
+  { to: "/cofounders", label: "Co-Founder Search", icon: UserRoundSearch },
+  { to: "/partnerships", label: "Partnerships & Network", icon: Handshake },
+  { to: "/funding", label: "Funding & Growth", icon: Rocket },
+  { to: "/advisor", label: "Growth Advisor", icon: BarChart3 },
+  { to: "/tasks", label: "Tasks & Follow-ups", icon: ListChecks },
+  { to: "/settings", label: "Settings", icon: Settings },
+] as const;
 
 function Logo() {
   return (

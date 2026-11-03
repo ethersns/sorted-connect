@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { Bot, Building, KeyRound, Lock, Search, Wallet } from 'lucide-react'
+import { Bot, Building, KeyRound, Lock, Receipt, Search, Wallet } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -47,6 +47,19 @@ const INTEGRATIONS = [
       'Register at developer.company-information.service.gov.uk',
       'Create an application → REST API key',
       'Add it as a Netlify environment variable',
+      'Used by UK Company Register to import stock-holding companies in bulk',
+    ],
+  },
+  {
+    icon: Receipt,
+    name: 'HMRC VAT Check API',
+    env: 'HMRC_CLIENT_ID · HMRC_CLIENT_SECRET',
+    cost: 'Free',
+    steps: [
+      'Sign in at developer.service.hmrc.gov.uk',
+      'Create a production application and subscribe it to “Check a UK VAT number” (v2.0)',
+      'Copy the client ID and client secret into Netlify environment variables',
+      'Optional: set HMRC_API_BASE to https://test-api.service.hmrc.gov.uk to use the sandbox',
     ],
   },
   {
