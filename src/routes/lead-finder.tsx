@@ -135,7 +135,7 @@ function LeadFinder() {
         <IntegrationStatus name="Companies House" detail="Registration, status and SIC codes. Free API key." />
       </div>
 
-      <section className="rounded-xl border border-border bg-card p-5">
+      <section className="rounded-2xl border-2 border-border bg-card p-5">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Field label="Opportunity type">
             <Select value={kind} onValueChange={(v) => setKind(v as PipelineKind)}>
@@ -253,7 +253,7 @@ function LeadFinder() {
         {status === 'searching' && (
           <div className="flex flex-col gap-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="flex items-center gap-4 rounded-lg border border-border bg-card p-4">
+              <div key={i} className="flex items-center gap-4 rounded-xl border-2 border-border bg-card p-4">
                 <Skeleton className="size-4" />
                 <div className="flex-1 space-y-2">
                   <Skeleton className="h-4 w-1/3" />
@@ -270,7 +270,7 @@ function LeadFinder() {
           </EmptyState>
         )}
         {status === 'done' && results.length > 0 && (
-          <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="overflow-hidden rounded-2xl border-2 border-border bg-card">
             <div className="flex items-center justify-between border-b border-border px-4 py-2.5 text-xs text-muted-foreground">
               <label className="flex items-center gap-2">
                 <Checkbox
@@ -326,7 +326,7 @@ function LeadFinder() {
 
 function IntegrationStatus({ name, detail }: { name: string; detail: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card px-4 py-3">
+    <div className="flex items-center justify-between gap-3 rounded-xl border-2 border-border bg-card px-4 py-3">
       <div className="min-w-0">
         <div className="flex items-center gap-2 text-sm font-medium">
           <span className="size-2 rounded-full bg-warning" /> {name} · not connected

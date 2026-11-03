@@ -88,7 +88,7 @@ function SettingsPage() {
       <Section icon={KeyRound} title="Integrations" description="Secrets live only in Netlify environment variables and are never sent to the browser.">
         <div className="grid gap-3 md:grid-cols-2">
           {INTEGRATIONS.map((it) => (
-            <div key={it.name} className="rounded-lg border border-border bg-card p-4">
+            <div key={it.name} className="rounded-xl border-2 border-border bg-card p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="flex items-center gap-2 text-sm font-medium"><it.icon className="size-4 text-primary" />{it.name}</span>
                 <span className="text-[11px] text-muted-foreground">{it.cost}</span>
@@ -106,7 +106,7 @@ function SettingsPage() {
           <div className="flex flex-col gap-1.5"><Label className="text-xs text-muted-foreground">Daily AI & search limit (£)</Label><Input value={daily} onChange={(e) => setDaily(e.target.value)} /></div>
           <div className="flex flex-col gap-1.5"><Label className="text-xs text-muted-foreground">Monthly limit (£)</Label><Input value={monthly} onChange={(e) => setMonthly(e.target.value)} /></div>
         </div>
-        <div className="mt-4 rounded-lg border border-border bg-card p-4 text-sm">
+        <div className="mt-4 rounded-xl border-2 border-border bg-card p-4 text-sm">
           <div className="flex justify-between"><span className="text-muted-foreground">Spent this month</span><span className="tabular font-mono">£0.00 of £{monthly}</span></div>
           <div className="mt-2 h-1.5 rounded-full bg-secondary"><div className="h-1.5 w-0 rounded-full bg-primary" /></div>
         </div>

@@ -58,7 +58,7 @@ function ProfileView({ o }: { o: Opportunity }) {
         <ArrowLeft className="size-3.5" /> All opportunities
       </Link>
 
-      <header className="flex flex-col gap-5 rounded-xl border border-border bg-card p-5 md:flex-row md:items-start">
+      <header className="flex flex-col gap-5 rounded-2xl border-2 border-border bg-card p-5 md:flex-row md:items-start">
         <ScoreRing score={o.assessment?.score ?? null} size={64} />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -329,7 +329,7 @@ function ProfileView({ o }: { o: Opportunity }) {
 
 function Panel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-border bg-card p-5">
+    <section className="rounded-2xl border-2 border-border bg-card p-5">
       <h2 className="mb-3 text-sm font-semibold">{title}</h2>
       {children}
     </section>

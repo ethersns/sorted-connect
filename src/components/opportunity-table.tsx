@@ -103,7 +103,7 @@ export function OpportunityTable({ kinds, allowKindFilter = true }: { kinds?: Pi
       {rows.length === 0 ? (
         <EmptyState icon={Search} title="Nothing matches">Adjust your filters or discover new records in Lead Finder.</EmptyState>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-border bg-card">
+        <div className="overflow-x-auto rounded-2xl border-2 border-border bg-card">
           <table className="w-full min-w-[760px] text-sm">
             <thead>
               <tr className="border-b border-border text-left text-xs text-muted-foreground">
