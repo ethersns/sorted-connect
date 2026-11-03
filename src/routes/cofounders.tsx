@@ -69,7 +69,7 @@ function CoFounders() {
               </span>
             </button>
           ))}
-          <div className="mt-4 rounded-xl border border-border bg-card p-4">
+          <div className="mt-4 rounded-2xl border-2 border-border bg-card p-4">
             <h2 className="mb-2 text-sm font-semibold">Where to look</h2>
             <ul className="flex flex-col gap-2.5 text-xs">
               {COMMUNITIES.map((c) => <li key={c.name}><span className="font-medium">{c.name}</span><span className="block text-muted-foreground">{c.why}</span></li>)}
@@ -79,7 +79,7 @@ function CoFounders() {
 
         {active && (
           <div className="flex flex-col gap-4">
-            <section className="rounded-xl border border-border bg-card p-5">
+            <section className="rounded-2xl border-2 border-border bg-card p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <Link to="/opportunities/$id" params={{ id: active.id }} className="font-display text-lg font-semibold hover:text-primary">{active.name}</Link>
@@ -113,7 +113,7 @@ function CoFounders() {
             </section>
 
             {active.assessment && (
-              <section className="rounded-xl border border-border bg-card p-5">
+              <section className="rounded-2xl border-2 border-border bg-card p-5">
                 <h2 className="mb-4 text-sm font-semibold">Co-Founder Fit Assessment <span className="font-normal text-muted-foreground">· preliminary</span></h2>
                 <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                   {active.assessment.factors.map((f) => (
@@ -127,14 +127,14 @@ function CoFounders() {
             )}
 
             <div className="grid gap-4 md:grid-cols-2">
-              <section className="rounded-xl border border-border bg-card p-5">
+              <section className="rounded-2xl border-2 border-border bg-card p-5">
                 <div className="mb-3 flex items-center justify-between">
                   <h2 className="flex items-center gap-2 text-sm font-semibold"><HelpCircle className="size-4 text-muted-foreground" /> First-meeting questions</h2>
                   <Button size="xs" variant="ghost" onClick={() => { setQuestions([...QUESTION_BANK].sort(() => Math.random() - 0.5).slice(0, 5)); toast('New question set') }}><Shuffle /> Shuffle</Button>
                 </div>
                 <ol className="flex list-decimal flex-col gap-2 pl-4 text-sm">{questions.map((q) => <li key={q}>{q}</li>)}</ol>
               </section>
-              <section className="rounded-xl border border-border bg-card p-5">
+              <section className="rounded-2xl border-2 border-border bg-card p-5">
                 <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold"><ListChecks className="size-4 text-muted-foreground" /> Validation checklist <span className="tabular ml-auto font-mono text-xs font-normal text-muted-foreground">{checks.size}/{CHECKLIST.length}</span></h2>
                 <ul className="flex flex-col gap-2 text-sm">
                   {CHECKLIST.map((c, i) => (
@@ -146,7 +146,7 @@ function CoFounders() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-3 text-[11px] text-muted-foreground">SORTED Connect never offers equity or makes commitments on your behalf.</p>
+                <p className="mt-3 text-[11px] text-muted-foreground">Conneck never offers equity or makes commitments on your behalf.</p>
               </section>
             </div>
           </div>

@@ -1,6 +1,6 @@
-# SORTED Connect — Product Roadmap
+# Conneck — Product Roadmap
 
-SORTED Connect is a private business development workspace for the founder of SORTED. It covers finding customers, referrers, partners, a co-founder and funding across the UK, then researching, scoring and contacting them.
+Conneck (formerly SORTED Connect) is a private business development workspace for the founder of SORTED. It covers finding customers, referrers, partners, a co-founder and funding across the UK, then researching, scoring and contacting them.
 
 The roadmap goes milestone by milestone, and each milestone ships something usable. The order follows the founder's priorities: the discovery-to-outreach workflow comes first, and advanced intelligence comes later.
 

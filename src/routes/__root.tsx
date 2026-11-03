@@ -8,9 +8,9 @@ import { WorkspaceProvider } from '@/lib/store'
 
 import '../styles.css'
 
-const siteName = 'SORTED Connect'
+const siteName = 'Conneck'
 const siteDescription =
-  'Private business development intelligence for the founder of SORTED — find customers, partners and a co-founder across the UK.'
+  'Conneck: the smug little frog that helps the founder of SORTED find customers, partners and a co-founder across the UK. Ribbit.'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -48,6 +48,7 @@ export const Route = createRootRoute({
       { name: 'robots', content: 'noindex, nofollow' },
     ],
     links: [
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       {
         rel: 'preconnect',
@@ -56,7 +57,7 @@ export const Route = createRootRoute({
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap',
       },
     ],
   }),

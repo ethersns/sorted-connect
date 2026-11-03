@@ -42,7 +42,7 @@ function Pipeline() {
     <div className="flex flex-col gap-6">
       <PageHeader title="Sales Pipeline" description="Drag cards between stages. Each move is logged on the record’s activity timeline." />
 
-      <div className="flex flex-wrap gap-1 rounded-lg border border-border bg-card p-1" role="tablist" aria-label="Pipeline">
+      <div className="flex flex-wrap gap-1 rounded-xl border-2 border-border bg-card p-1" role="tablist" aria-label="Pipeline">
         {PIPELINE_ORDER.map((k) => {
           const n = opportunities.filter((o) => o.kind === k).length
           return (
@@ -130,7 +130,7 @@ function Card({ o, dragging, onDragStart, onDragEnd }: { o: Opportunity; draggin
       }}
       onDragEnd={onDragEnd}
       className={cn(
-        'group cursor-grab rounded-lg border border-border bg-card p-3 shadow-sm transition-[opacity,border-color] hover:border-primary/40 active:cursor-grabbing',
+        'group cursor-grab rounded-xl border-2 border-border bg-card p-3 shadow-sm transition-[opacity,border-color] hover:border-primary/40 active:cursor-grabbing',
         dragging && 'opacity-40',
       )}
     >

@@ -52,7 +52,7 @@ export function compose(o: Opportunity, type: OutputType, tone: Tone, variant: n
     case 'Short LinkedIn connection note':
       return `Hi${o.contacts[0] ? ' ' + o.contacts[0].name.split(' ')[0] : ''} — I’m building SORTED, ${sorted.oneLiner.toLowerCase()} I’ve been following ${o.industry.toLowerCase()} businesses in ${o.region} and would value connecting.`.slice(0, 300)
     case 'Brief phone call script':
-      return `Opening: “Hi, it’s ${sorted.founder} from SORTED — have I caught you at an OK time for 30 seconds?”\n\nReason: “${hook(o)} I work with smaller warehouse teams on ${problem(o)}.”\n\nQuestion: “How are you handling that at the moment?”\n\nIf interested: “Would a 15-minute screen-share next week be useful?”\n\nIf not: “No problem at all — thanks for your time.” (Log outcome in SORTED Connect.)`
+      return `Opening: “Hi, it’s ${sorted.founder} from SORTED — have I caught you at an OK time for 30 seconds?”\n\nReason: “${hook(o)} I work with smaller warehouse teams on ${problem(o)}.”\n\nQuestion: “How are you handling that at the moment?”\n\nIf interested: “Would a 15-minute screen-share next week be useful?”\n\nIf not: “No problem at all — thanks for your time.” (Log outcome in Conneck.)`
     case 'Follow-up email':
       return `${g}\n\nJust following up on my note from last week about ${problem(o)}. I know things get busy${o.industry.includes('3PL') || o.industry.includes('fulfilment') ? ', especially heading into peak' : ''}.\n\n${cta}${optOut}${sign}`
     case 'Meeting follow-up':
