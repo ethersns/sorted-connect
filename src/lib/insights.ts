@@ -19,7 +19,11 @@ const daysBetween = (a: string, b: string) =>
  * Ranks today's actions from saved records only. Revenue-producing actions
  * (demos, pilots, warm follow-ups, high-fit first contact) are weighted highest.
  */
-export function topActions(opps: Opportunity[], tasks: Task[], today: string): SuggestedAction[] {
+export function topActions(
+  opps: Opportunity[],
+  tasks: Task[],
+  today: string,
+): SuggestedAction[] {
   const out: SuggestedAction[] = []
   const stageIdx = (o: Opportunity) => PIPELINES[o.kind].stages.indexOf(o.stage)
 
@@ -32,27 +36,74 @@ export function topActions(opps: Opportunity[], tasks: Task[], today: string): S
       title: t.title,
       reason: t.due < today ? `Overdue since ${t.due}` : 'Due today',
       opportunityId: t.opportunityId,
-      weight: (t.priority === 'high' ? 90 : t.priority === 'medium' ? 70 : 50) + (o?.kind === 'customer' ? 8 : 0),
-      category: o?.kind === 'cofounder' ? 'Co-founder' : o?.kind === 'customer' ? 'Revenue' : 'Follow-up',
+      weight:
+        (t.priority === 'high' ? 90 : t.priority === 'medium' ? 70 : 50) +
+        (o?.kind === 'customer' ? 8 : 0),
+      category:
+        o?.kind === 'cofounder'
+          ? 'Co-founder'
+          : o?.kind === 'customer'
+            ? 'Revenue'
+            : 'Follow-up',
       due: t.due,
     })
   }
 
   for (const o of opps) {
     if (o.doNotContact) continue
-    const hasOpenTask = tasks.some((t) => !t.done && t.opportunityId === o.id && t.due <= today)
+    const hasOpenTask = tasks.some(
+      (t) => !t.done && t.opportunityId === o.id && t.due <= today,
+    )
     if (hasOpenTask) continue
     if (o.kind === 'customer') {
       if (o.stage === 'Qualified' && (o.assessment?.score ?? 0) >= 70)
-        out.push({ id: `q-${o.id}`, opportunityId: o.id, title: `Contact ${o.name}`, reason: `Qualified, fit score ${o.assessment?.score}`, weight: 80 + (o.assessment?.score ?? 0) / 10, category: 'Revenue' })
-      else if (o.stage === 'Contacted' && daysBetween(o.lastTouchedAt, today) >= 4)
-        out.push({ id: `f-${o.id}`, opportunityId: o.id, title: `Follow up with ${o.name}`, reason: `No reply for ${daysBetween(o.lastTouchedAt, today)} days`, weight: 78, category: 'Follow-up' })
+        out.push({
+          id: `q-${o.id}`,
+          opportunityId: o.id,
+          title: `Contact ${o.name}`,
+          reason: `Qualified, fit score ${o.assessment?.score}`,
+          weight: 80 + (o.assessment?.score ?? 0) / 10,
+          category: 'Revenue',
+        })
+      else if (
+        o.stage === 'Contacted' &&
+        daysBetween(o.lastTouchedAt, today) >= 4
+      )
+        out.push({
+          id: `f-${o.id}`,
+          opportunityId: o.id,
+          title: `Follow up with ${o.name}`,
+          reason: `No reply for ${daysBetween(o.lastTouchedAt, today)} days`,
+          weight: 78,
+          category: 'Follow-up',
+        })
       else if (o.stage === 'Meeting Booked')
-        out.push({ id: `d-${o.id}`, opportunityId: o.id, title: `Prepare demo for ${o.name}`, reason: 'Meeting booked', weight: 92, category: 'Revenue' })
+        out.push({
+          id: `d-${o.id}`,
+          opportunityId: o.id,
+          title: `Prepare demo for ${o.name}`,
+          reason: 'Meeting booked',
+          weight: 92,
+          category: 'Revenue',
+        })
       else if (o.stage === 'New' && !o.assessment)
-        out.push({ id: `r-${o.id}`, opportunityId: o.id, title: `Research ${o.name}`, reason: 'Saved but not yet assessed', weight: 55, category: 'Research' })
+        out.push({
+          id: `r-${o.id}`,
+          opportunityId: o.id,
+          title: `Research ${o.name}`,
+          reason: 'Saved but not yet assessed',
+          weight: 55,
+          category: 'Research',
+        })
     } else if (o.kind === 'referral' && stageIdx(o) <= 2) {
-      out.push({ id: `n-${o.id}`, opportunityId: o.id, title: `Reach out to ${o.name}`, reason: 'Potential source of customer introductions', weight: 62, category: 'Network' })
+      out.push({
+        id: `n-${o.id}`,
+        opportunityId: o.id,
+        title: `Reach out to ${o.name}`,
+        reason: 'Potential source of customer introductions',
+        weight: 62,
+        category: 'Network',
+      })
     }
   }
 
@@ -63,7 +114,8 @@ export function funnel(opps: Opportunity[]) {
   const customers = opps.filter((o) => o.kind === 'customer')
   const stages = PIPELINES.customer.stages
   const reached = (stage: string) =>
-    customers.filter((o) => stages.indexOf(o.stage) >= stages.indexOf(stage)).length
+    customers.filter((o) => stages.indexOf(o.stage) >= stages.indexOf(stage))
+      .length
   return [
     { label: 'Opportunities', value: customers.length },
     { label: 'Qualified', value: reached('Qualified') },

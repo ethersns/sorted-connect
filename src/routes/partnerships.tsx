@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button'
 import { PageHeader } from '@/components/bits'
 import { OpportunityTable } from '@/components/opportunity-table'
 
-export const Route = createFileRoute('/partnerships')({ component: Partnerships })
+export const Route = createFileRoute('/partnerships')({
+  component: Partnerships,
+})
 
 function Partnerships() {
   return (
@@ -12,7 +14,13 @@ function Partnerships() {
       <PageHeader
         title="Partnerships & Network"
         description="Referral sources who can introduce you to buyers, and complementary businesses for integrations and co-marketing."
-        actions={<Button asChild><Link to="/lead-finder"><Compass /> Find partners</Link></Button>}
+        actions={
+          <Button asChild>
+            <Link to="/lead-finder">
+              <Compass /> Find partners
+            </Link>
+          </Button>
+        }
       />
       <OpportunityTable kinds={['referral', 'partner']} />
     </div>
