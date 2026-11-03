@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { Bot, Building, KeyRound, Lock, Search, Wallet } from 'lucide-react'
+import { Bot, Building, KeyRound, Lock, Receipt, Search, Wallet } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -27,7 +27,8 @@ const INITIAL_FEATURES: { name: string; status: FeatureStatus }[] = [
 
 const INTEGRATIONS = [
   { icon: Search, name: 'Brave Search API', env: 'BRAVE_SEARCH_API_KEY', cost: 'Free tier available', steps: ['Create an account at api-dashboard.search.brave.com', 'Choose the free “Data for AI / Search” plan', 'Copy the API key', 'Add it as a Netlify environment variable'] },
-  { icon: Building, name: 'Companies House API', env: 'COMPANIES_HOUSE_API_KEY', cost: 'Free', steps: ['Register at developer.company-information.service.gov.uk', 'Create an application → REST API key', 'Add it as a Netlify environment variable'] },
+  { icon: Building, name: 'Companies House API', env: 'COMPANIES_HOUSE_API_KEY', cost: 'Free', steps: ['Register at developer.company-information.service.gov.uk', 'Create an application → REST API key', 'Add it as a Netlify environment variable', 'Used by UK Company Register to import stock-holding companies in bulk'] },
+  { icon: Receipt, name: 'HMRC VAT Check API', env: 'HMRC_CLIENT_ID · HMRC_CLIENT_SECRET', cost: 'Free', steps: ['Sign in at developer.service.hmrc.gov.uk', 'Create a production application and subscribe it to “Check a UK VAT number” (v2.0)', 'Copy the client ID and client secret into Netlify environment variables', 'Optional: set HMRC_API_BASE to https://test-api.service.hmrc.gov.uk to use the sandbox'] },
   { icon: Bot, name: 'Netlify AI Gateway', env: 'Provisioned automatically', cost: 'Pay per use · cheap model by default', steps: ['No key needed — Netlify injects credentials server-side', 'Default model: deepseek/deepseek-v4.1-flash (configurable)'] },
   { icon: Lock, name: 'Netlify Identity', env: 'Invite-only', cost: 'Included', steps: ['Enabled with invite-only registration', 'You’ll receive an invite email to set your password'] },
 ]

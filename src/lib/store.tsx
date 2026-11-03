@@ -74,7 +74,12 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         const existingDomains = new Set(
           opportunities.map((o) => o.website?.replace(/^https?:\/\//, '')),
         )
-        const fresh = results.filter((r) => !existingDomains.has(r.domain))
+        const existingNumbers = new Set(opportunities.map((o) => o.companyNumber).filter(Boolean))
+        const fresh = results.filter(
+          (r) =>
+            !(r.domain && existingDomains.has(r.domain)) &&
+            !(r.companyNumber && existingNumbers.has(r.companyNumber)),
+        )
         const created: Opportunity[] = fresh.map((r): Opportunity => ({
           id: `opp-${uid()}`,
           name: r.name,

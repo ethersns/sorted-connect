@@ -5,6 +5,7 @@ import {
   Compass,
   Handshake,
   KanbanSquare,
+  Landmark,
   LayoutDashboard,
   ListChecks,
   Menu,
@@ -26,6 +27,7 @@ import { KindBadge } from './bits'
 export const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/lead-finder', label: 'Lead Finder', icon: Compass },
+  { to: '/company-register', label: 'UK Company Register', icon: Landmark },
   { to: '/opportunities', label: 'All Opportunities', icon: Table2 },
   { to: '/pipeline', label: 'Sales Pipeline', icon: KanbanSquare },
   { to: '/outreach', label: 'Outreach Studio', icon: PenLine },
