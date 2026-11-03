@@ -1,22 +1,17 @@
-import * as React from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  CalendarClock,
-  Compass,
-  PoundSterling,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SampleBanner, formatGBP } from "@/components/bits";
-import { FROG_QUIPS, Frog, SpeechBubble } from "@/components/frog";
-import { useWorkspace } from "@/lib/store";
-import { PREVIEW_TODAY as TODAY } from "@/lib/fixtures";
-import { funnel, topActions } from "@/lib/insights";
-import { PIPELINES } from "@/lib/pipelines";
-import { cn } from "@/lib/utils";
+import * as React from 'react'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowRight, CalendarClock, Compass, PoundSterling } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { SampleBanner, formatGBP } from '@/components/bits'
+import { FROG_QUIPS, Frog, SpeechBubble } from '@/components/frog'
+import { useWorkspace } from '@/lib/store'
+import { PREVIEW_TODAY as TODAY } from '@/lib/fixtures'
+import { funnel, topActions } from '@/lib/insights'
+import { PIPELINES } from '@/lib/pipelines'
+import { cn } from '@/lib/utils'
 
-export const Route = createFileRoute("/")({ component: Dashboard });
+export const Route = createFileRoute('/')({ component: Dashboard })
 
 function Stat({
   label,
@@ -24,16 +19,16 @@ function Stat({
   hint,
   tilt,
 }: {
-  label: string;
-  value: React.ReactNode;
-  hint?: string;
-  tilt?: boolean;
+  label: string
+  value: React.ReactNode
+  hint?: string
+  tilt?: boolean
 }) {
   return (
     <div
       className={cn(
-        "rounded-xl border-2 border-border bg-card px-4 py-3 transition-transform hover:-translate-y-0.5 hover:rotate-0 motion-reduce:transition-none",
-        tilt ? "rotate-[0.6deg]" : "-rotate-[0.4deg]",
+        'rounded-xl border-2 border-border bg-card px-4 py-3 transition-transform hover:-translate-y-0.5 hover:rotate-0 motion-reduce:transition-none',
+        tilt ? 'rotate-[0.6deg]' : '-rotate-[0.4deg]',
       )}
     >
       <div className="text-xs font-semibold text-muted-foreground">{label}</div>
@@ -44,20 +39,20 @@ function Stat({
         <div className="mt-0.5 text-[11px] text-muted-foreground">{hint}</div>
       )}
     </div>
-  );
+  )
 }
 
 const CATEGORY_TONE: Record<string, string> = {
-  Revenue: "text-primary bg-primary/10",
-  "Follow-up": "text-warning bg-warning/10",
-  Research: "text-muted-foreground bg-muted",
-  Network: "text-chart-2 bg-chart-2/10",
-  "Co-founder": "text-chart-5 bg-chart-5/10",
-};
+  Revenue: 'text-primary bg-primary/10',
+  'Follow-up': 'text-warning bg-warning/10',
+  Research: 'text-muted-foreground bg-muted',
+  Network: 'text-chart-2 bg-chart-2/10',
+  'Co-founder': 'text-chart-5 bg-chart-5/10',
+}
 
 function DashboardHero() {
-  const [i, setI] = React.useState(0);
-  const [hop, setHop] = React.useState(0);
+  const [i, setI] = React.useState(0)
+  const [hop, setHop] = React.useState(0)
   return (
     <section className="relative overflow-hidden rounded-3xl border-2 border-ink bg-gradient-to-br from-primary/25 via-card to-card px-5 py-6 shadow-[5px_5px_0_var(--ink)] sm:px-8">
       <div
@@ -74,10 +69,10 @@ function DashboardHero() {
             Croak of the day · Tuesday 3 November
           </p>
           <h1 className="mt-4 max-w-2xl font-display text-3xl leading-tight tracking-wide sm:text-5xl">
-            What should I do today to move{" "}
+            What should I do today to move{' '}
             <span className="text-primary [text-shadow:3px_3px_0_var(--ink)]">
               SORTED
-            </span>{" "}
+            </span>{' '}
             forward?
           </h1>
           <p className="mt-3 max-w-reading text-sm font-medium text-muted-foreground">
@@ -105,8 +100,8 @@ function DashboardHero() {
           <button
             type="button"
             onClick={() => {
-              setI((n) => n + 1);
-              setHop((n) => n + 1);
+              setI((n) => n + 1)
+              setHop((n) => n + 1)
             }}
             aria-label="Poke the frog for another tip"
             className="rounded-2xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
@@ -114,21 +109,21 @@ function DashboardHero() {
             <span className="frog-bob block">
               <Frog
                 key={hop}
-                mood={i % 4 === 3 ? "happy" : "smug"}
+                mood={i % 4 === 3 ? 'happy' : 'smug'}
                 hoodie
-                className={cn("w-36 sm:w-44", hop > 0 && "frog-hop")}
+                className={cn('w-36 sm:w-44', hop > 0 && 'frog-hop')}
               />
             </span>
           </button>
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function Dashboard() {
-  const { opportunities, tasks, toggleTask } = useWorkspace();
-  const [doneIds, setDoneIds] = React.useState<Set<string>>(new Set());
+  const { opportunities, tasks, toggleTask } = useWorkspace()
+  const [doneIds, setDoneIds] = React.useState<Set<string>>(new Set())
   // Keep actions ticked off in this view visible (struck through) until the next visit.
   const actions = topActions(
     opportunities,
@@ -136,21 +131,21 @@ function Dashboard() {
       t.done && doneIds.has(`task-${t.id}`) ? { ...t, done: false } : t,
     ),
     TODAY,
-  );
-  const f = funnel(opportunities);
-  const customers = opportunities.filter((o) => o.kind === "customer");
+  )
+  const f = funnel(opportunities)
+  const customers = opportunities.filter((o) => o.kind === 'customer')
   const stageCount = (stages: string[]) =>
-    customers.filter((o) => stages.includes(o.stage)).length;
+    customers.filter((o) => stages.includes(o.stage)).length
   const pipelineValue = customers
     .filter(
       (o) =>
-        !["Not Interested", "Disqualified", "Paying Customer"].includes(
+        !['Not Interested', 'Disqualified', 'Paying Customer'].includes(
           o.stage,
         ),
     )
-    .reduce((s, o) => s + (o.estimatedValue ?? 0), 0);
-  const followUps = tasks.filter((t) => !t.done && t.due <= TODAY).length;
-  const max = Math.max(...f.map((x) => x.value), 1);
+    .reduce((s, o) => s + (o.estimatedValue ?? 0), 0)
+  const followUps = tasks.filter((t) => !t.done && t.due <= TODAY).length
+  const max = Math.max(...f.map((x) => x.value), 1)
 
   return (
     <div className="flex flex-col gap-6">
@@ -166,7 +161,7 @@ function Dashboard() {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
         <Stat
           label="New this week"
-          value={stageCount(["New", "Researching"])}
+          value={stageCount(['New', 'Researching'])}
         />
         <Stat
           tilt
@@ -174,7 +169,7 @@ function Dashboard() {
           value={
             customers.filter(
               (o) =>
-                o.stage === "Qualified" && (o.assessment?.score ?? 0) >= 75,
+                o.stage === 'Qualified' && (o.assessment?.score ?? 0) >= 75,
             ).length
           }
         />
@@ -186,13 +181,13 @@ function Dashboard() {
         <Stat
           tilt
           label="Meetings & demos"
-          value={stageCount(["Meeting Booked", "Demo Completed"])}
+          value={stageCount(['Meeting Booked', 'Demo Completed'])}
         />
-        <Stat label="Active pilots" value={stageCount(["Trial/Pilot"])} />
+        <Stat label="Active pilots" value={stageCount(['Trial/Pilot'])} />
         <Stat
           tilt
           label="Paying customers"
-          value={stageCount(["Paying Customer"])}
+          value={stageCount(['Paying Customer'])}
         />
         <Stat label="Follow-ups due" value={followUps} />
         <Stat
@@ -200,7 +195,7 @@ function Dashboard() {
           label="Partnerships"
           value={
             opportunities.filter(
-              (o) => o.kind === "partner" || o.kind === "referral",
+              (o) => o.kind === 'partner' || o.kind === 'referral',
             ).length
           }
         />
@@ -209,7 +204,7 @@ function Dashboard() {
           value={
             opportunities.filter(
               (o) =>
-                o.kind === "cofounder" &&
+                o.kind === 'cofounder' &&
                 PIPELINES.cofounder.stages.indexOf(o.stage) >= 4,
             ).length
           }
@@ -241,13 +236,13 @@ function Dashboard() {
           </div>
           <ol className="divide-y divide-border">
             {actions.map((a, i) => {
-              const done = doneIds.has(a.id);
+              const done = doneIds.has(a.id)
               return (
                 <li
                   key={a.id}
                   className={cn(
-                    "flex items-start gap-3 px-5 py-3 transition-opacity",
-                    done && "opacity-45",
+                    'flex items-start gap-3 px-5 py-3 transition-opacity',
+                    done && 'opacity-45',
                   )}
                 >
                   <span className="tabular mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-secondary font-display text-[11px] text-primary">
@@ -258,12 +253,12 @@ function Dashboard() {
                     aria-label={`Mark “${a.title}” done`}
                     onCheckedChange={() => {
                       setDoneIds((prev) => {
-                        const next = new Set(prev);
-                        if (next.has(a.id)) next.delete(a.id);
-                        else next.add(a.id);
-                        return next;
-                      });
-                      if (a.taskId) toggleTask(a.taskId);
+                        const next = new Set(prev)
+                        if (next.has(a.id)) next.delete(a.id)
+                        else next.add(a.id)
+                        return next
+                      })
+                      if (a.taskId) toggleTask(a.taskId)
                     }}
                     className="mt-0.5"
                   />
@@ -273,8 +268,8 @@ function Dashboard() {
                         to="/opportunities/$id"
                         params={{ id: a.opportunityId }}
                         className={cn(
-                          "text-sm font-medium hover:text-primary",
-                          done && "line-through",
+                          'text-sm font-medium hover:text-primary',
+                          done && 'line-through',
                         )}
                       >
                         {a.title}
@@ -282,8 +277,8 @@ function Dashboard() {
                     ) : (
                       <span
                         className={cn(
-                          "text-sm font-medium",
-                          done && "line-through",
+                          'text-sm font-medium',
+                          done && 'line-through',
                         )}
                       >
                         {a.title}
@@ -295,14 +290,14 @@ function Dashboard() {
                   </div>
                   <span
                     className={cn(
-                      "rounded-full px-2 py-0.5 text-[11px] font-bold",
+                      'rounded-full px-2 py-0.5 text-[11px] font-bold',
                       CATEGORY_TONE[a.category],
                     )}
                   >
                     {a.category}
                   </span>
                 </li>
-              );
+              )
             })}
           </ol>
         </section>
@@ -375,5 +370,5 @@ function Dashboard() {
         </section>
       </div>
     </div>
-  );
+  )
 }

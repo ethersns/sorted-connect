@@ -1,2 +1,8 @@
-# Local Netlify folder
+node_modules
+dist
 .netlify
+.tanstack
+*.local
+CLAUDE.local.md
+.env
+.env.*

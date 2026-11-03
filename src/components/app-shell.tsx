@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import * as React from 'react'
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 import {
   BarChart3,
   Compass,
@@ -15,20 +15,20 @@ import {
   Settings,
   Table2,
   UserRoundSearch,
-} from "lucide-react";
+} from 'lucide-react'
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useWorkspace } from "@/lib/store";
-import { PREVIEW_TODAY } from "@/lib/fixtures";
-import { KindBadge } from "./bits";
-import { FROG_QUIPS, Frog, SpeechBubble } from "./frog";
+} from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { useWorkspace } from '@/lib/store'
+import { PREVIEW_TODAY } from '@/lib/fixtures'
+import { KindBadge } from './bits'
+import { FROG_QUIPS, Frog, SpeechBubble } from './frog'
 
 export const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -65,60 +65,60 @@ function Logo() {
         </div>
       </div>
     </Link>
-  );
+  )
 }
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { tasks } = useWorkspace();
-  const due = tasks.filter((t) => !t.done && t.due <= PREVIEW_TODAY).length;
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const { tasks } = useWorkspace()
+  const due = tasks.filter((t) => !t.done && t.due <= PREVIEW_TODAY).length
   return (
     <nav className="flex flex-col gap-0.5" aria-label="Main">
       {NAV.map((item) => {
         const active =
-          item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
-        const Icon = item.icon;
+          item.to === '/' ? pathname === '/' : pathname.startsWith(item.to)
+        const Icon = item.icon
         return (
           <Link
             key={item.to}
             to={item.to}
             onClick={onNavigate}
             className={cn(
-              "group flex items-center gap-2.5 rounded-lg border-2 px-2.5 py-1.5 text-[13px] font-semibold transition-[color,background-color,transform] motion-reduce:transition-none",
+              'group flex items-center gap-2.5 rounded-lg border-2 px-2.5 py-1.5 text-[13px] font-semibold transition-[color,background-color,transform] motion-reduce:transition-none',
               active
-                ? "border-ink bg-primary text-primary-foreground shadow-[3px_3px_0_var(--ink)]"
-                : "border-transparent text-sidebar-foreground/75 hover:translate-x-0.5 hover:bg-sidebar-accent hover:text-sidebar-foreground",
+                ? 'border-ink bg-primary text-primary-foreground shadow-[3px_3px_0_var(--ink)]'
+                : 'border-transparent text-sidebar-foreground/75 hover:translate-x-0.5 hover:bg-sidebar-accent hover:text-sidebar-foreground',
             )}
           >
             <Icon
               className={cn(
-                "size-4",
+                'size-4',
                 active
-                  ? "text-primary-foreground"
-                  : "text-muted-foreground group-hover:text-primary",
+                  ? 'text-primary-foreground'
+                  : 'text-muted-foreground group-hover:text-primary',
               )}
             />
             <span className="flex-1 truncate">{item.label}</span>
-            {item.to === "/tasks" && due > 0 && (
+            {item.to === '/tasks' && due > 0 && (
               <span
                 className={cn(
-                  "tabular rounded-full px-1.5 text-[11px] font-bold",
-                  active ? "bg-ink text-primary" : "bg-warning text-ink",
+                  'tabular rounded-full px-1.5 text-[11px] font-bold',
+                  active ? 'bg-ink text-primary' : 'bg-warning text-ink',
                 )}
               >
                 {due}
               </span>
             )}
           </Link>
-        );
+        )
       })}
     </nav>
-  );
+  )
 }
 
 function PondFrog() {
-  const [i, setI] = React.useState(0);
-  const [hop, setHop] = React.useState(0);
+  const [i, setI] = React.useState(0)
+  const [hop, setHop] = React.useState(0)
   return (
     <div className="mt-auto rounded-xl border-2 border-sidebar-border bg-sidebar-accent/50 p-3">
       <SpeechBubble tail="bottom" className="pop-in text-[13px]" key={i}>
@@ -128,17 +128,17 @@ function PondFrog() {
         <button
           type="button"
           onClick={() => {
-            setI((n) => n + 1);
-            setHop((n) => n + 1);
+            setI((n) => n + 1)
+            setHop((n) => n + 1)
           }}
           aria-label="Poke the frog for another tip"
           className="rounded-lg outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
         >
           <Frog
             key={hop}
-            mood={i % 3 === 2 ? "happy" : "smug"}
+            mood={i % 3 === 2 ? 'happy' : 'smug'}
             hoodie
-            className={cn("w-14", hop > 0 && "frog-hop")}
+            className={cn('w-14', hop > 0 && 'frog-hop')}
           />
         </button>
         <p className="pb-1 text-[11px] leading-snug text-muted-foreground">
@@ -150,7 +150,7 @@ function PondFrog() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
 function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
@@ -165,37 +165,37 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
       </div>
       <PondFrog />
     </div>
-  );
+  )
 }
 
 function GlobalSearch() {
-  const { opportunities } = useWorkspace();
-  const navigate = useNavigate();
-  const [q, setQ] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const { opportunities } = useWorkspace()
+  const navigate = useNavigate()
+  const [q, setQ] = React.useState('')
+  const [open, setOpen] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        inputRef.current?.focus();
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        inputRef.current?.focus()
       }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   const results = q.trim()
     ? opportunities
         .filter((o) =>
           [o.name, o.city, o.industry, ...o.tags]
-            .join(" ")
+            .join(' ')
             .toLowerCase()
             .includes(q.toLowerCase()),
         )
         .slice(0, 7)
-    : [];
+    : []
 
   return (
     <div className="relative w-full max-w-md">
@@ -204,8 +204,8 @@ function GlobalSearch() {
         ref={inputRef}
         value={q}
         onChange={(e) => {
-          setQ(e.target.value);
-          setOpen(true);
+          setQ(e.target.value)
+          setOpen(true)
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 150)}
@@ -229,8 +229,8 @@ function GlobalSearch() {
                 key={o.id}
                 type="button"
                 onMouseDown={() => {
-                  navigate({ to: "/opportunities/$id", params: { id: o.id } });
-                  setQ("");
+                  navigate({ to: '/opportunities/$id', params: { id: o.id } })
+                  setQ('')
                 }}
                 className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-accent"
               >
@@ -247,11 +247,11 @@ function GlobalSearch() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false)
   return (
     <div className="pond flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r-2 border-sidebar-border bg-sidebar/90 lg:block">
@@ -281,7 +281,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <GlobalSearch />
           <div className="ml-auto flex items-center gap-3">
             <span className="hidden -rotate-1 items-center gap-1.5 rounded-full border-2 border-ink bg-warning px-3 py-1 text-[11px] font-bold text-ink shadow-[2px_2px_0_var(--ink)] sm:inline-flex">
-              <span className="size-1.5 animate-pulse rounded-full bg-ink motion-reduce:animate-none" />{" "}
+              <span className="size-1.5 animate-pulse rounded-full bg-ink motion-reduce:animate-none" />{' '}
               Practice pond · sample data
             </span>
             <div
@@ -298,5 +298,5 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </main>
       </div>
     </div>
-  );
+  )
 }

@@ -6,9 +6,43 @@ const esc = (v: unknown) => {
 }
 
 export function opportunitiesToCsv(rows: Opportunity[]) {
-  const header = ['Name', 'Pipeline', 'Stage', 'Industry', 'City', 'Region', 'Website', 'Company number', 'Status', 'Fit score', 'Confidence', 'Tags', 'Estimated value (GBP)', 'Do not contact', 'Researched', 'Primary source']
+  const header = [
+    'Name',
+    'Pipeline',
+    'Stage',
+    'Industry',
+    'City',
+    'Region',
+    'Website',
+    'Company number',
+    'Status',
+    'Fit score',
+    'Confidence',
+    'Tags',
+    'Estimated value (GBP)',
+    'Do not contact',
+    'Researched',
+    'Primary source',
+  ]
   const lines = rows.map((o) =>
-    [o.name, o.kind, o.stage, o.industry, o.city, o.region, o.website, o.companyNumber, o.companyStatus, o.assessment?.score, o.assessment?.confidence, o.tags.join('; '), o.estimatedValue, o.doNotContact ? 'yes' : 'no', o.researchedAt, o.sources[0]?.url]
+    [
+      o.name,
+      o.kind,
+      o.stage,
+      o.industry,
+      o.city,
+      o.region,
+      o.website,
+      o.companyNumber,
+      o.companyStatus,
+      o.assessment?.score,
+      o.assessment?.confidence,
+      o.tags.join('; '),
+      o.estimatedValue,
+      o.doNotContact ? 'yes' : 'no',
+      o.researchedAt,
+      o.sources[0]?.url,
+    ]
       .map(esc)
       .join(','),
   )

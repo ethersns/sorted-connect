@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdvisorRouteImport } from './routes/advisor'
 import { Route as CofoundersRouteImport } from './routes/cofounders'
+import { Route as CompanyRegisterRouteImport } from './routes/company-register'
 import { Route as FundingRouteImport } from './routes/funding'
 import { Route as LeadFinderRouteImport } from './routes/lead-finder'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -35,6 +36,11 @@ const AdvisorRoute = AdvisorRouteImport.update({
 const CofoundersRoute = CofoundersRouteImport.update({
   id: '/cofounders',
   path: '/cofounders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyRegisterRoute = CompanyRegisterRouteImport.update({
+  id: '/company-register',
+  path: '/company-register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FundingRoute = FundingRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
   '/cofounders': typeof CofoundersRoute
+  '/company-register': typeof CompanyRegisterRoute
   '/funding': typeof FundingRoute
   '/lead-finder': typeof LeadFinderRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
   '/cofounders': typeof CofoundersRoute
+  '/company-register': typeof CompanyRegisterRoute
   '/funding': typeof FundingRoute
   '/lead-finder': typeof LeadFinderRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
   '/cofounders': typeof CofoundersRoute
+  '/company-register': typeof CompanyRegisterRoute
   '/funding': typeof FundingRoute
   '/lead-finder': typeof LeadFinderRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/advisor'
     | '/cofounders'
+    | '/company-register'
     | '/funding'
     | '/lead-finder'
     | '/opportunities'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/advisor'
     | '/cofounders'
+    | '/company-register'
     | '/funding'
     | '/lead-finder'
     | '/opportunities'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/advisor'
     | '/cofounders'
+    | '/company-register'
     | '/funding'
     | '/lead-finder'
     | '/opportunities'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdvisorRoute: typeof AdvisorRoute
   CofoundersRoute: typeof CofoundersRoute
+  CompanyRegisterRoute: typeof CompanyRegisterRoute
   FundingRoute: typeof FundingRoute
   LeadFinderRoute: typeof LeadFinderRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/cofounders'
       fullPath: '/cofounders'
       preLoaderRoute: typeof CofoundersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company-register': {
+      id: '/company-register'
+      path: '/company-register'
+      fullPath: '/company-register'
+      preLoaderRoute: typeof CompanyRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/funding': {
@@ -279,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdvisorRoute: AdvisorRoute,
   CofoundersRoute: CofoundersRoute,
+  CompanyRegisterRoute: CompanyRegisterRoute,
   FundingRoute: FundingRoute,
   LeadFinderRoute: LeadFinderRoute,
   OpportunitiesRoute: OpportunitiesRoute,
